@@ -138,6 +138,12 @@ internal class DisplayConfig
 	{
 		public uint LowPart;
 		public int HighPart;
+
+		public readonly bool Equals(LUID other)
+		{
+			return (this.LowPart == other.LowPart)
+				&& (this.HighPart == other.HighPart);
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -429,7 +435,8 @@ internal class DisplayConfig
 		{
 			var displayMode = displayModes
 				.Where(x => x.infoType is DISPLAYCONFIG_MODE_INFO_TYPE.DISPLAYCONFIG_MODE_INFO_TYPE_TARGET)
-				.FirstOrDefault(x => x.id == displayPath.targetInfo.id);
+				.FirstOrDefault(x => x.adapterId.Equals(displayPath.targetInfo.adapterId)
+								  && x.id == displayPath.targetInfo.id);
 			if (displayMode.Equals(default(DISPLAYCONFIG_MODE_INFO)))
 				continue;
 

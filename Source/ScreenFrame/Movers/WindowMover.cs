@@ -49,7 +49,7 @@ public abstract class WindowMover
 		_source?.AddHook(WndProc);
 
 		var dpi = VisualTreeHelperAddition.GetDpi(_window);
-		if (!dpi.Equals(VisualTreeHelperAddition.SystemDpi))
+		if (!dpi.TypesafeEquals(VisualTreeHelperAddition.SystemDpi))
 		{
 			AdjustWindow(dpi);
 		}

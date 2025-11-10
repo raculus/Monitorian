@@ -497,8 +497,9 @@ public class AppControllerCore
 
 	private void ReflectMouseWheel(int delta)
 	{
-		var monitor = SelectedMonitor;
-		if (monitor is not { IsTarget: true, IsControllable: true })
+		var monitor = Monitors.Prepend(SelectedMonitor)
+			.FirstOrDefault(x => x.IsTarget && x.IsControllable);
+		if (monitor is null)
 			return;
 
 		EnsureUnisonWorkable(monitor);

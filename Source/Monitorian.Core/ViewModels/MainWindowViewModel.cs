@@ -63,7 +63,7 @@ public class MainWindowViewModel : ViewModelBase
 					if (!MonitorsView.Cast<MonitorViewModel>().Any(x => x.IsSelected))
 					{
 						var monitor = MonitorsView.Cast<MonitorViewModel>()
-							.FirstOrDefault(x => string.Equals(x.DeviceInstanceId, Settings.SelectedDeviceInstanceId));
+							.FirstOrDefault(x => ReferenceEquals(x, _controller.SelectedMonitor));
 						if (monitor is not null)
 							monitor.IsSelected = true;
 					}

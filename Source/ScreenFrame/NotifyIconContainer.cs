@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Forms;
 
+using ScreenFrame.Helper;
 using ScreenFrame.Watcher;
 
 namespace ScreenFrame;
@@ -175,7 +176,7 @@ public class NotifyIconContainer : IDisposable
 	{
 		var oldDpi = _dpi;
 		_dpi = VisualTreeHelperAddition.ConvertToDpiScale(m.WParam);
-		if (!oldDpi.Equals(_dpi))
+		if (!oldDpi.TypesafeEquals(_dpi))
 		{
 			OnDpiChanged(oldDpi, _dpi);
 		}
@@ -189,7 +190,7 @@ public class NotifyIconContainer : IDisposable
 
 		var oldDpi = _dpi;
 		_dpi = VisualTreeHelperAddition.GetDpi(iconRect.Location);
-		if (!oldDpi.Equals(_dpi))
+		if (!oldDpi.TypesafeEquals(_dpi))
 		{
 			OnDpiChanged(oldDpi, _dpi);
 		}

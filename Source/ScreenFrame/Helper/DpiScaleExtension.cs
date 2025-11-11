@@ -18,4 +18,10 @@ internal static class DpiScaleExtension
 		matrix.Scale(a.DpiScaleX, a.DpiScaleY);
 		return matrix;
 	}
+
+	public static bool TypesafeEquals(this DpiScale a, DpiScale b)
+	{
+		return (a.DpiScaleX == b.DpiScaleX)
+			&& (a.DpiScaleY == b.DpiScaleY);
+	}
 }
